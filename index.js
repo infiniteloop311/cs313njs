@@ -4,12 +4,21 @@ const path = require('path')
 const app = express()
 const PORT = process.env.PORT || 8888
 
+// Connects to the database that is connected to this node.js app
+//  app: pacific-island-66556, db: postresql-graceful-43235
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
 /*
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
+  .get('/cool', (req, res) => res.send(cool()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 */
 
@@ -25,8 +34,6 @@ app.get('/', (req, res) => {
         root: path.join(__dirname, './views/pages')
     })
 })
-
-app.get('/cool', (req, res) => res.send(cool()))
 
 // set up a rule that says requests to "/math" should be handled by the
 // handleMath function below

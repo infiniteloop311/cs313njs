@@ -9,14 +9,14 @@
 <body>
     <h1>Postal Rate Calculator</h1>
     <form action="/postal" method="get">
-        <select name="Category">
-            <option>Add</option>
-			<option>Subtract</option>
-			<option>Multiply</option>
-			<option>Divide</option>
+        <select name="category">
+            <option>Letters (Stamped)</option>
+			<option>Letters (Metered)</option>
+			<option>Large Envelopes (Flats)</option>
+			<option>First-Class Package Service—Retail</option>
 		</select>
 
-		<input type="text" name="operand1">
+		<input type="text" name="weight">
         <br><br>
         <button type="submit">Submit</button>
     </form>

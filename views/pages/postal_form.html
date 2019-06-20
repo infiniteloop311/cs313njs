@@ -9,13 +9,15 @@
 <body>
     <h1>Postal Rate Calculator</h1>
     <form action="/postal" method="get">
+        <span>Type: </span>
         <select name="category">
             <option>Letters (Stamped)</option>
 			<option>Letters (Metered)</option>
 			<option>Large Envelopes (Flats)</option>
 			<option>First-Class Package Service—Retail</option>
 		</select>
-
+        <br/>
+        <span>Weight: </span>
 		<input type="text" name="weight">
         <br><br>
         <button type="submit">Submit</button>

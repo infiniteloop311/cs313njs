@@ -4,6 +4,24 @@
 <head>
     <meta charset="UTF-8"> 
     <title>Math Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        function doAJAX() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("ajax_answer").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "/math_service", true);
+            xhttp.send();
+        }
+        $(document).ready(function(){
+            $("#jqueryajaxbutton").click(function(){
+                $("ajax_answer").load("/math_service");
+            });
+        });
+    </script>
 </head>
     
 <body>
@@ -19,7 +37,13 @@
 		<input type="text" name="operand1">
 		<input type="text" name="operand2">
         <br><br>
+        <button type="button" onclick="doAJAX()">Submit AJAX</button>
+        <br/>
+        <button id="jqueryajaxbutton" type="button">Submit jQuery AJAX</button>
+        <br/>
         <button type="submit">Submit Math</button>
+        <br/><br/>
+        <span id="ajax_answer"></span>
     </form>
 </body>
 

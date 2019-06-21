@@ -43,9 +43,7 @@ app.get('/return', (req, res) => {
         root: path.join(__dirname, './views/pages')
     })
 })
-jnbhijbdvx kfbhjklfasgfsagfsgs
 
-asdfbbejk
 // start the server listening
 app.listen(PORT, function() { console.log('Node app is running on port', PORT); })
 

@@ -69,6 +69,7 @@ function postalCalculation(request, response) {
 function stampedLetterCost(response, category, weight) {
     console.log("In the stampedLetterCost function.");
     let result = 0;
+    let zone = null;
     
     if (weight <= 1)
         result = 0.55;
@@ -79,13 +80,14 @@ function stampedLetterCost(response, category, weight) {
     else if (weight <= 3.5 && weight > 3)
         result = 1.00;
     
-    const params = {category: category, weight: weight, result: result};
+    const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
 }
 
 function meteredLetterCost(response, category, weight) {
     console.log("In the meteredLetterCost function.");
     let result = 0;
+    let zone = null;
     
     if (weight <= 1)
         result = 0.50;
@@ -96,13 +98,14 @@ function meteredLetterCost(response, category, weight) {
     else if (weight <= 3.5 && weight > 3)
         result = 0.95;
     
-    const params = {category: category, weight: weight, result: result};
+    const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
 }
 
 function largeEnvelopeCost(response, category, weight) {
     console.log("In the largeEnvelopeCost function.");
     let result = 0;
+    let zone = null;
     
     if (weight <= 1)
         result = 1.00;
@@ -131,7 +134,7 @@ function largeEnvelopeCost(response, category, weight) {
     else if (weight <= 13 && weight > 3)
         result = 2.80;
     
-    const params = {category: category, weight: weight, result: result};
+    const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
 }
 
@@ -168,6 +171,8 @@ function firstClassPackageCost(response, category, weight, zone) {
     else if (weight <= 13 && weight > 3)
         result = 5.71 + extra;
     
-    const params = {category: category, weight: weight, result: result};
+    result = result.toFixed(2);
+    
+    const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
 }

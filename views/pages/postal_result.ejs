@@ -7,8 +7,11 @@
     <% include ../partials/nav.ejs %>
     <div class="container">
         <h2>Postal Rate</h2>
-        <p>Mail of type "<%= category%>", weighing <%= weight%> oz., will cost $<%= result%>.</p>
-        <a href="/">Back</a>
+        <p>
+            Mail of type "<%= category%>"<%if (zone != null) { %>being sent to zone <%= zone%><% } %>, 
+            weighing <%= weight%> oz., will cost you $<%= result%>.
+        </p>
+        <a href="/">Return To Form</a>
     </div>
 </body>
 </html>

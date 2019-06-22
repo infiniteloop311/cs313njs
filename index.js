@@ -37,12 +37,6 @@ app.get('/', (req, res) => {
 
 app.get('/postal', postalCalculation)
 
-app.get('/return', (req, res) => {
-    console.log("I'm getting here");
-    res.sendFile('./postal_form.html', {
-        root: path.join(__dirname, './views/pages')
-    })
-})
 
 // start the server listening
 app.listen(PORT, function() { console.log('Node app is running on port', PORT); })

@@ -17,14 +17,33 @@
             }
         }
         function checkWeight() {
-            
+            var category = document.getElementById("mailtype");
+            var selected = category.options[category.selectedIndex].value;
+            var weight = document.getElementById("weight").value;
+            if (selected == "Letters (Stamped)" || selected == "Letters (Metered)") {
+                if (weight > 3.5) {
+                    document.getElementById("weight_err").innerHTML = "Error: weight must be 3.5 oz. or less!";
+                    return false;
+                } else {
+                    document.getElementById("weight_err").innerHTML = "";
+                    return true;
+                }
+            } else if (selected == "Large Envelopes (Flats)" || selected == "First-Class Package Service—Retail") {
+                if (weight > 13) {
+                    document.getElementById("weight_err").innerHTML = "Error: weight must be 13 oz. or less!";
+                    return false;
+                } else {
+                    document.getElementById("weight_err").innerHTML = "";
+                    return true;
+                }
+            }
         }
     </script>
 </head>
     
 <body onload="revealZone()">
     <h1>Postal Rate Calculator</h1>
-    <form action="/postal" method="get">
+    <form action="/postal" method="get" onsubmit="return checkWeight()">
         <span>Type: </span><br/>
         <select id="mailtype" name="category" onchange="revealZone()">
             <option value="Letters (Stamped)">Letters (Stamped)</option>
@@ -34,8 +53,8 @@
 		</select>
         <br/><br/>
         <span>Weight: </span><br/>
-		<input type="text" name="weight" onchange="checkWeight()">
-        <span>oz.</span>
+		<input id="weight" type="text" name="weight" onchange="checkWeight()">
+        <span>oz. </span><span id="weight_err" style="color: darkred"></span>
         <br/><br/>
         <span id="zone_text" style="display: none">Zone: </span><br/>
         <select id="zone" name="zone" style="display: none">

@@ -80,6 +80,8 @@ function stampedLetterCost(response, category, weight) {
     else if (weight <= 3.5 && weight > 3)
         result = 1.00;
     
+    result = result.toFixed(2);
+    
     const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
 }
@@ -97,6 +99,8 @@ function meteredLetterCost(response, category, weight) {
         result = 0.80;
     else if (weight <= 3.5 && weight > 3)
         result = 0.95;
+    
+    result = result.toFixed(2);
     
     const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
@@ -133,6 +137,8 @@ function largeEnvelopeCost(response, category, weight) {
         result = 2.65;
     else if (weight <= 13 && weight > 3)
         result = 2.80;
+    
+    result = result.toFixed(2);
     
     const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);

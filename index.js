@@ -46,6 +46,7 @@ function postalCalculation(request, response) {
     
     const category = request.query.category;
 	const weight = Number(request.query.weight);
+    const zone = Number(request.query.zone)
     
     if (category == "Letters (Stamped)") {
         console.log("Going to stampedLetterCost function.");
@@ -61,7 +62,7 @@ function postalCalculation(request, response) {
     }
     else if (category == "First-Class Package Service—Retail") {
         console.log("Going to firstClassPackageCost function.");
-        firstClassPackageCost(response, category, weight)
+        firstClassPackageCost(response, category, weight, zone)
     }
 }
 
@@ -134,37 +135,38 @@ function largeEnvelopeCost(response, category, weight) {
     response.render('pages/postal_result', params);
 }
 
-function firstClassPackageCost(response, category, weight) {
+function firstClassPackageCost(response, category, weight, zone) {
     console.log("In the firstClassPackageCost function.");
     let result = 0;
+    let extra = (zone - 1) * 0.05;
     
     //These prices are for zone 1 and 2, might add other zones later
     if (weight <= 1)
-        result = 3.66;
+        result = 3.66 + extra;
     else if (weight <= 2 && weight > 1)
-        result = 3.66;
+        result = 3.66 + extra;
     else if (weight <= 3 && weight > 2)
-        result = 3.66;
+        result = 3.66 + extra;
     else if (weight <= 4 && weight > 3)
-        result = 3.66;
+        result = 3.66 + extra;
     else if (weight <= 5 && weight > 3)
-        result = 4.39;
+        result = 4.39 + extra;
     else if (weight <= 6 && weight > 3)
-        result = 4.39;
+        result = 4.39 + extra;
     else if (weight <= 7 && weight > 3)
-        result = 4.39;
+        result = 4.39 + extra;
     else if (weight <= 8 && weight > 3)
-        result = 4.39;
+        result = 4.39 + extra;
     else if (weight <= 9 && weight > 3)
-        result = 5.19;
+        result = 5.19 + extra;
     else if (weight <= 10 && weight > 3)
-        result = 5.19;
+        result = 5.19 + extra;
     else if (weight <= 11 && weight > 3)
-        result = 5.19;
+        result = 5.19 + extra;
     else if (weight <= 12 && weight > 3)
-        result = 5.19;
+        result = 5.19 + extra;
     else if (weight <= 13 && weight > 3)
-        result = 5.71;
+        result = 5.71 + extra;
     
     const params = {category: category, weight: weight, result: result};
     response.render('pages/postal_result', params);

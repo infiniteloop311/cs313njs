@@ -4,23 +4,48 @@
 <head>
     <meta charset="UTF-8"> 
     <title>Postal Form</title>
+    <script>
+        function revealZone() {
+            var category = document.getElementById("mailtype");
+            var selected = category.options[category.selectedIndex].value;
+            if (selected == "4") {
+                document.getElementById("zone").style.display = "block";
+                document.getElementById("zone_text").style.display = "block";
+            } else {
+                document.getElementById("zone").style.display = "none";
+                document.getElementById("zone_text").style.display = "none";
+            }
+        }
+    </script>
 </head>
     
 <body>
     <h1>Postal Rate Calculator</h1>
     <form action="/postal" method="get">
         <span>Type: </span>
-        <select name="category">
-            <option>Letters (Stamped)</option>
-			<option>Letters (Metered)</option>
-			<option>Large Envelopes (Flats)</option>
-			<option>First-Class Package Service—Retail</option>
+        <select id="mailtype" name="category" onchange="revealZone()">
+            <option value="1">Letters (Stamped)</option>
+			<option value="2">Letters (Metered)</option>
+			<option value="3">Large Envelopes (Flats)</option>
+			<option value="4">First-Class Package Service—Retail</option>
 		</select>
         <br/>
         <span>Weight: </span>
 		<input type="text" name="weight">
         <span>oz.</span>
-        <!--Might add a zone field later for the first-class packages-->
+        <br/>
+        <span id="zone_text" style="display: none">Zone: </span>
+        <select id="zone" name="zone" style="display: none">
+            <option>1</option>
+            <option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+		</select>
         <br><br>
         <button type="submit">Submit</button>
     </form>

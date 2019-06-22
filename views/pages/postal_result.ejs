@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <% include ../partials/header.ejs %>
     <script>
         function backToForm() {
             var xhttp = new XMLHttpRequest();
@@ -21,6 +21,7 @@
         <h2>Postal Rate</h2>
         <p>Mail of type "<%= category%>", weighing <%= weight%> oz., will cost $<%= result%>.</p>
         <button onclick="backToForm()">Go Back to Form</button>
+        <a href="/">Back</a>
     </div>
 </body>
 </html>

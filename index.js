@@ -44,29 +44,36 @@ app.listen(PORT, function() { console.log('Node app is running on port', PORT); 
 function postalCalculation(request, response) {
     console.log("In the postalCalculation function.");
     
+    const dest = request.query.destination;
     const category = request.query.category;
 	const weight = Number(request.query.weight);
     const zone = Number(request.query.zone)
+    let multiplier = 0;
+    
+    if (dest == "Domestic")
+        multiplier = 1;
+    else if (dest == "International")
+        multiplier = 2;
     
     if (category == "Letters (Stamped)") {
         console.log("Going to stampedLetterCost function.");
-        stampedLetterCost(response, category, weight);
+        stampedLetterCost(response, category, weight, multiplier);
     }
     else if (category == "Letters (Metered)") {
         console.log("Going to meteredLetterCost function.");
-        meteredLetterCost(response, category, weight);
+        meteredLetterCost(response, category, weight, multiplier);
     }
     else if (category == "Large Envelopes (Flats)") {
         console.log("Going to largeEnvelopeCost function.");
-        largeEnvelopeCost(response, category, weight);
+        largeEnvelopeCost(response, category, weight, multiplier);
     }
     else if (category == "First-Class Package Service—Retail") {
         console.log("Going to firstClassPackageCost function.");
-        firstClassPackageCost(response, category, weight, zone)
+        firstClassPackageCost(response, category, weight, zone, multiplier)
     }
 }
 
-function stampedLetterCost(response, category, weight) {
+function stampedLetterCost(response, category, weight, multiplier) {
     console.log("In the stampedLetterCost function.");
     let result = 0;
     let zone = null;
@@ -80,13 +87,13 @@ function stampedLetterCost(response, category, weight) {
     else if (weight <= 3.5 && weight > 3)
         result = 1.00;
     
-    result = result.toFixed(2);
+    result = (result.toFixed(2) * multiplier);
     
     const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
 }
 
-function meteredLetterCost(response, category, weight) {
+function meteredLetterCost(response, category, weight, multiplier) {
     console.log("In the meteredLetterCost function.");
     let result = 0;
     let zone = null;
@@ -100,13 +107,13 @@ function meteredLetterCost(response, category, weight) {
     else if (weight <= 3.5 && weight > 3)
         result = 0.95;
     
-    result = result.toFixed(2);
+    result = (result.toFixed(2) * multiplier);
     
     const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
 }
 
-function largeEnvelopeCost(response, category, weight) {
+function largeEnvelopeCost(response, category, weight, multiplier) {
     console.log("In the largeEnvelopeCost function.");
     let result = 0;
     let zone = null;
@@ -138,13 +145,13 @@ function largeEnvelopeCost(response, category, weight) {
     else if (weight <= 13 && weight > 3)
         result = 2.80;
     
-    result = result.toFixed(2);
+    result = (result.toFixed(2) * multiplier);
     
     const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);
 }
 
-function firstClassPackageCost(response, category, weight, zone) {
+function firstClassPackageCost(response, category, weight, zone, multiplier) {
     console.log("In the firstClassPackageCost function.");
     let result = 0;
     let extra = (zone - 1) * 0.05;
@@ -177,7 +184,7 @@ function firstClassPackageCost(response, category, weight, zone) {
     else if (weight <= 13 && weight > 3)
         result = 5.71 + extra;
     
-    result = result.toFixed(2);
+    result = (result.toFixed(2) * multiplier);
     
     const params = {category: category, weight: weight, zone: zone, result: result};
     response.render('pages/postal_result', params);

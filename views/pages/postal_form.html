@@ -44,6 +44,12 @@
 <body onload="revealZone()">
     <h1>Postal Rate Calculator</h1>
     <form action="/postal" method="get" onsubmit="return checkWeight()">
+        <span>Destination: </span><br/>
+        <select name="destination">
+            <option>Domestic</option>
+            <option>International</option>
+        </select>
+        <br/><br/>
         <span>Type: </span><br/>
         <select id="mailtype" name="category" onchange="revealZone()">
             <option value="Letters (Stamped)">Letters (Stamped)</option>

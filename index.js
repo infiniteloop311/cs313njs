@@ -32,6 +32,10 @@ app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
+app.get('/getPerson', function(req, res){
+    console.log("Wrong Function!");
+});
+
 app.get('/getPerson/:id', getPerson);
 
 function getPerson(req, res) {

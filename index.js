@@ -1,4 +1,3 @@
-const cool = require('cool-ascii-faces');
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -23,7 +22,7 @@ const pool = new Pool({
 });
 
 // tell it to use the public directory as one where static files live
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');

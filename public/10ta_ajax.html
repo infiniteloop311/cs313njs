@@ -20,12 +20,10 @@
     
 <body onload="revealZone()">
     <h1>Postal Rate Calculator</h1>
-    <form action="getPerson()" method="get">
-        <span>Person ID: </span>
-        <input id="personid" type="text">
-        <br/>
-        <button type="submit">Get Details</button>
-    </form>
+    <span>Person ID: </span>
+    <input id="personid" type="text">
+    <br/>
+    <button type="submit" onclick="getPerson()">Get Details</button>
     <div id="demo">
     </div>
 </body>

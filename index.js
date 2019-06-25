@@ -42,8 +42,10 @@ app.get('/getPerson/:id', function(req, res) {
         if (err)
             console.error("Error in query: " + err);
         
-        if (result.rows.length == 1)
-            console.log(res.json(result.row[0]));
+        if (result.rows.length == 1) {
+            //console.log(res.json(result.row[0]));
+            console.log("Found result: " + JSON.stringify(result.rows));
+        }
     });
 });
 

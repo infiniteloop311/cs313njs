@@ -45,9 +45,8 @@ function getPerson(req, res) {
             console.error("Error in query: " + err);
         
         if (result.rows.length == 1) {
-            //console.log(res.json(result.row[0]));
             console.log("Found result: " + JSON.stringify(result.rows));
-            res.send(JSON.stringify(result.rows));
+            res.send(result.rows);
         }
     });
 }

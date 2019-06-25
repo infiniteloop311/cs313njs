@@ -1,16 +1,8 @@
-const cool = require('cool-ascii-faces')
-const express = require('express')
-const path = require('path')
-const app = express()
-const PORT = process.env.PORT || 8888
-
-// Connects to the database that is connected to this node.js app
-//  app: pacific-island-66556, db: postresql-graceful-43235
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
+const cool = require('cool-ascii-faces');
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 8888;
 
 /*
 express()
@@ -21,6 +13,14 @@ express()
   .get('/cool', (req, res) => res.send(cool()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 */
+
+// Connects to the database that is connected to this node.js app
+//  app: pacific-island-66556, db: postresql-graceful-43235
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
 // tell it to use the public directory as one where static files live
 app.use(express.static(path.join(__dirname, '/public')));
@@ -33,12 +33,11 @@ app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-app.get('/taGetPerson/:id', getPerson);
+app.get('/getPerson/:id', getPerson);
 
 function getPerson(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
-    
-    console.log("ID: " + req.params.id);
+    console.log("In the getPerson function.");
     
     pool.query(sql, function(err, result) {
         if (err)
@@ -54,23 +53,23 @@ function getPerson(req, res) {
 
 // This function handles requests to the /getPerson endpoint
 // it expects to have an id on the query string, such as: http://localhost:5000/getPerson?id=1
-function taGetPerson(request, response) {
+function taGetPerson(req, res) {
 	// First get the person's id
-	const id = request.params.id;
+	const id = req.params.id;
 
 	// TODO: We should really check here for a valid id before continuing on...
 
 	// use a helper function to query the DB, and provide a callback for when it's done
-	getPersonFromDb(id, function(error, result) {
+	getPersonFromDb(id, res, function(error, result) {
 		// This is the callback function that will be called when the DB is done.
 		// The job here is just to send it back.
 
 		// Make sure we got a row with the person, then prepare JSON to send back
 		if (error || result == null || result.length != 1) {
-			response.status(500).json({success: false, data: error});
+			res.status(500).json({success: false, data: error});
 		} else {
 			const person = result[0];
-			response.status(200).json(person);
+			res.status(200).json(person);
 		}
 	});
 }
@@ -78,7 +77,7 @@ function taGetPerson(request, response) {
 // This function gets a person from the DB.
 // By separating this out from the handler above, we can keep our model
 // logic (this function) separate from our controller logic (the getPerson function)
-function getPersonFromDb(id, callback) {
+function getPersonFromDb(id, res, callback) {
 	console.log("Getting person from DB with id: " + id);
 
 	// Set up the SQL that we will use for our query. Note that we can make
@@ -101,7 +100,8 @@ function getPersonFromDb(id, callback) {
 
 		// Log this to the console for debugging purposes.
 		console.log("Found result: " + JSON.stringify(result.rows));
-
+        res.send(result.rows);
+        
 		// When someone else called this function, they supplied the function
 		// they wanted called when we were all done. Call that function now
 		// and pass it the results.

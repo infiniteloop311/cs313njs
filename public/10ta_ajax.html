@@ -6,13 +6,14 @@
     <title>Postal Form</title>
     <script>
         function getPerson() {
+            let id = document.getElementById("personid").value;
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("demo").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "/getPerson", true);
+            xhttp.open("GET", "/getPerson/" + id, true);
             xhttp.send();
         }
     </script>

@@ -34,6 +34,8 @@ app.get('/', (req, res) => {
 
 app.get('/getPerson', function(req, res){
     console.log("Wrong Function!");
+    res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+    //res.send(["Tony","Lisa","Michael","Ginger","Food"]);
 });
 
 app.get('/getPerson/:id', getPerson);

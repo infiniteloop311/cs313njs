@@ -39,7 +39,7 @@ app.get('/getPerson', function(req, res){
     res.send(["Tony","Lisa","Michael","Ginger","Food"]);
 });
 
-app.get('/getPerson/:id', getPerson);
+app.get('/taGetPerson/:id', getPerson);
 
 function getPerson(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;

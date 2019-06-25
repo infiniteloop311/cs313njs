@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-app.get('/getPerson/:id', getPerson);
+app.get('/taGetPerson/:id', getPerson);
 
 function getPerson(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
@@ -46,6 +46,7 @@ function getPerson(req, res) {
         
         if (result.rows.length == 1) {
             console.log("Found result: " + JSON.stringify(result.rows));
+            // result.rows is returned in JSON format
             res.send(result.rows);
         }
     });
@@ -82,7 +83,7 @@ function getPersonFromDb(id, callback) {
 
 	// Set up the SQL that we will use for our query. Note that we can make
 	// use of parameter placeholders just like with PHP's PDO.
-	const sql = "SELECT id, first, last, birthdate FROM person WHERE id = $1::int";
+	const sql = "SELECT * FROM test_table WHERE id = $1::int";
 
 	// We now set up an array of all the parameters we will pass to fill the
 	// placeholder spots we left in the query.
@@ -101,7 +102,6 @@ function getPersonFromDb(id, callback) {
 		// Log this to the console for debugging purposes.
 		console.log("Found result: " + JSON.stringify(result.rows));
 
-
 		// When someone else called this function, they supplied the function
 		// they wanted called when we were all done. Call that function now
 		// and pass it the results.
@@ -109,7 +109,6 @@ function getPersonFromDb(id, callback) {
 		// (The first parameter is the error variable, so we will pass null.)
 		callback(null, result.rows);
 	});
-
 } // end of getPersonFromDb
 
 // start the server listening

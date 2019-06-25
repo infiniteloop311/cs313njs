@@ -36,6 +36,8 @@ app.get('/', (req, res) => {
 app.get('/getPerson/:id', function(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
     
+    console.log("ID: " + req.params.id);
+    
     pool.query(sql, function(err, result) {
         if (err)
             console.error("Error in query: " + err);

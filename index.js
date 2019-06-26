@@ -62,7 +62,7 @@ function myGetPerson(req, res) {
         
         console.log("Found result: " + JSON.stringify(result.rows));
         // result.rows is returned in JSON format
-        result1 = JSON.stringify(result.rows);
+        result1 = result.rows;
         //res.send(result1);
     });
     
@@ -72,7 +72,7 @@ function myGetPerson(req, res) {
         
         console.log("Found result: " + JSON.stringify(result.rows));
         // result.rows is returned in JSON format
-        result2 = JSON.stringify(result.rows);
+        result2 = result.rows;
         //res.send(result.rows);
     });
     

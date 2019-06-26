@@ -69,7 +69,7 @@ function myGetPerson(req, res) {
             }
             console.log(result.rows);
             console.log("Found result: " + JSON.stringify(result.rows));
-            result.send(result.rows);
+            result.send(JSON.stringify(result.rows));
         });
     });
 }

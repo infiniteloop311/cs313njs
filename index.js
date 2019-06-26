@@ -72,11 +72,9 @@ function getChild(req, res) {
         if (err)
             console.error("Error in query: " + err);
         
-        if (result.rows.length == 1) {
-            console.log("Found result: " + JSON.stringify(result.rows));
-            // result.rows is returned in JSON format
-            res.send(result.rows);
-        }
+        console.log("Found result: " + JSON.stringify(result.rows));
+        // result.rows is returned in JSON format
+        res.send(result.rows);
     });
 }
 

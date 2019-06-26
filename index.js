@@ -82,6 +82,8 @@ function myGetPerson(req, res) {
             console.log(result.rows)
         });
     });
+    
+    res.write("Hello world");
 }
 
 function getChild(req, res) {

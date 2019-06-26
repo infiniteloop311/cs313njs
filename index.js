@@ -39,15 +39,20 @@ app.get('/getPerson', function(req, res){
     res.send(["Tony","Lisa","Michael","Ginger","Food"]);
 });
 
-app.get('/getPerson/:id/:id2', getPerson);
+app.get('/getPerson/:id/:id2', myGetPerson);
 app.get('/getChild/:id', getChild);
 app.get('/getParent/:id', getParent);
 
 // my function made for this assignment
-function getPerson(req, res) {
+function myGetPerson(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
-    const sql_test = "SELECT * FROM test_table WHERE id = $1::int; SELECT * FROM test_table WHERE id = $2::int;";
-    const params = [req.params.id, req.params.id2];
+    const sql_test = "SELECT * FROM test_table WHERE id = $1::int;" 
+    const sql_test2 = "SELECT * FROM test_table WHERE id = $1::int;";
+    const params = [req.params.id];
+    const params2 = [req.params.id2];
+    
+    let result1 = "";
+    let result2 = "";
     
     console.log("In the getPerson function.");
     
@@ -55,12 +60,21 @@ function getPerson(req, res) {
         if (err)
             console.error("Error in query: " + err);
         
-        if (result.rows.length == 1) {
-            console.log("Found result: " + JSON.stringify(result.rows));
-            // result.rows is returned in JSON format
-            res.send(result.rows);
-        }
+        console.log("Found result: " + JSON.stringify(result.rows));
+        // result.rows is returned in JSON format
+        result1 = JSON.stringify(result.rows);
+        res.send(result1);
     });
+    /*
+    pool.query(sql_test, params[1], function(err, result) {
+        if (err)
+            console.error("Error in query: " + err);
+        
+        console.log("Found result: " + JSON.stringify(result.rows));
+        // result.rows is returned in JSON format
+        res.send(result.rows);
+    });
+    */
 }
 
 function getChild(req, res) {
@@ -87,24 +101,36 @@ function getParent(req, res) {
         if (err)
             console.error("Error in query: " + err);
         
-        if (result.rows.length == 1) {
-            console.log("Found result: " + JSON.stringify(result.rows));
-            // result.rows is returned in JSON format
-            res.send(result.rows);
-        }
+        console.log("Found result: " + JSON.stringify(result.rows));
+        // result.rows is returned in JSON format
+        res.send(result.rows);
     });
 }
 
 // This function handles requests to the /getPerson endpoint
 // it expects to have an id on the query string, such as: http://localhost:5000/getPerson?id=1
-function taGetPerson(req, res) {
+function getPerson(req, res) {
 	// First get the person's id
 	const id = req.params.id;
+    const id2 = req.params.id2;
 
 	// TODO: We should really check here for a valid id before continuing on...
 
 	// use a helper function to query the DB, and provide a callback for when it's done
 	getPersonFromDb(id, res, function(error, result) {
+		// This is the callback function that will be called when the DB is done.
+		// The job here is just to send it back.
+
+		// Make sure we got a row with the person, then prepare JSON to send back
+		if (error || result == null || result.length != 1) {
+			res.status(500).json({success: false, data: error});
+		} else {
+			const person = result[0];
+			res.status(200).json(person);
+		}
+	});
+    
+    getPersonFromDb(id2, res, function(error, result) {
 		// This is the callback function that will be called when the DB is done.
 		// The job here is just to send it back.
 

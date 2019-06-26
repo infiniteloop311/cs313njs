@@ -66,7 +66,7 @@ function myGetPerson(req, res) {
         if (err)
             return console.error('Error acquiring client', err.stack)
         
-        client.query('SELECT * FROM test_table WHERE id = 1', (err, result) => {
+        client.query('SELECT * FROM test_table WHERE id = $1::int', [1], (err, result) => {
             release()
             if (err) {
                 return console.error('Error executing query', err.stack)

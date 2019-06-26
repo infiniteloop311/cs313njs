@@ -39,7 +39,7 @@ app.get('/getPerson', function(req, res){
     res.send(["Tony","Lisa","Michael","Ginger","Food"]);
 });
 
-app.get('/getPerson/:id/:id2', myGetPerson);
+app.get('/getPerson/:id', myGetPerson);
 app.get('/getChild/:id', getChild);
 app.get('/getParent/:id', getParent);
 

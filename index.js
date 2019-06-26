@@ -66,15 +66,7 @@ function myGetPerson(req, res) {
         if (err)
             return console.error('Error acquiring client', err.stack)
         
-        client.query('SELECT * FROM test_table WHERE id = $1::int', params, (err, result) => {
-            release()
-            if (err) {
-                return console.error('Error executing query', err.stack)
-            }
-            console.log(result.rows)
-        });
-        
-        client.query('SELECT * FROM test_table WHERE id = $1::int', params2, (err, result) => {
+        client.query('SELECT * FROM test_table', (err, result) => {
             release()
             if (err) {
                 return console.error('Error executing query', err.stack)
@@ -82,8 +74,6 @@ function myGetPerson(req, res) {
             console.log(result.rows)
         });
     });
-    
-    res.write("Hello world");
 }
 
 function getChild(req, res) {

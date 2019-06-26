@@ -50,29 +50,29 @@ function myGetPerson(req, res) {
     const params = [req.params.id];
     const params2 = [req.params.id2];
     
-    let result1 = "";
-    let result2 = "";
-    
     console.log("In the getPerson function.");
-    
+    /*
     pool.query(sql_test, params, function(err, result) {
         if (err)
             console.error("Error in query: " + err);
         
         console.log("Found result: " + JSON.stringify(result.rows));
         // result.rows is returned in JSON format
-        result1 = result.rows;
-        res.send(result1);
+        res.send(result.rows);
+    });
+    */
+    
+    pool.connect((err, client, release) => {
+        if (err)
+            return console.error('Error acquiring client', err.stack)
         
-        pool.query(sql_test, params2, function(err, result) {
-            if (err)
-                console.error("Error in query: " + err);
-        
-            console.log("Found result: " + JSON.stringify(result.rows));
-            // result.rows is returned in JSON format
-            result2 = result.rows;
-            res.send(result.rows);
-        });
+        client.query('SELECT NOW()', (err, result) => {
+            release()
+            if (err) {
+                return console.error('Error executing query', err.stack)
+            }
+            console.log(result.rows)
+        })
     });
 }
 
@@ -117,19 +117,6 @@ function getPerson(req, res) {
 
 	// use a helper function to query the DB, and provide a callback for when it's done
 	getPersonFromDb(id, res, function(error, result) {
-		// This is the callback function that will be called when the DB is done.
-		// The job here is just to send it back.
-
-		// Make sure we got a row with the person, then prepare JSON to send back
-		if (error || result == null || result.length != 1) {
-			res.status(500).json({success: false, data: error});
-		} else {
-			const person = result[0];
-			res.status(200).json(person);
-		}
-	});
-    
-    getPersonFromDb(id2, res, function(error, result) {
 		// This is the callback function that will be called when the DB is done.
 		// The job here is just to send it back.
 

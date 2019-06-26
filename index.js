@@ -39,15 +39,15 @@ app.get('/getPerson', function(req, res){
     res.send(["Tony","Lisa","Michael","Ginger","Food"]);
 });
 
-app.get('/getPerson/:id', getPerson);
+app.get('/getPerson/:id/:id2', getPerson);
 app.get('/getChild/:id', getChild);
 app.get('/getParent/:id', getParent);
 
 // my function made for this assignment
 function getPerson(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
-    const sql_test = "SELECT * FROM test_table WHERE id = $1::int";
-    const params = [req.params.id];
+    const sql_test = "SELECT * FROM test_table WHERE id = $1::int; SELECT * FROM test_table WHERE id = $2::int;";
+    const params = [req.params.id, req.params.id2];
     
     console.log("In the getPerson function.");
     

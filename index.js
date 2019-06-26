@@ -39,11 +39,34 @@ app.get('/getPerson', function(req, res){
     res.send(["Tony","Lisa","Michael","Ginger","Food"]);
 });
 
-app.get('/taGetPerson/:id', getPerson);
+app.get('/getPerson/:id', getPerson);
+app.get('/getChild/:id', getChild);
+app.get('/getParent/:id', getParent);
 
+// my function made for this assignment
 function getPerson(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
+    const sql_test = "SELECT * FROM test_table WHERE id = $1::int";
+    const params = [req.params.id];
+    
     console.log("In the getPerson function.");
+    
+    pool.query(sql_test, params, function(err, result) {
+        if (err)
+            console.error("Error in query: " + err);
+        
+        if (result.rows.length == 1) {
+            console.log("Found result: " + JSON.stringify(result.rows));
+            // result.rows is returned in JSON format
+            res.send(result.rows);
+        }
+    });
+}
+
+function getChild(req, res) {
+    var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
+    var sql2 = "SELECT * FROM test_table_relations WHERE child_id=" + req.params.id;
+    console.log("In the getChild function.");
     
     pool.query(sql, function(err, result) {
         if (err)

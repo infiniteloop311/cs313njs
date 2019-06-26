@@ -47,7 +47,6 @@ app.get('/getParent/:id', getParent);
 function myGetPerson(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
     const sql_test = "SELECT * FROM test_table WHERE id = $1::int;";
-    const sql_test2 = "SELECT * FROM test_table WHERE id = $1::int;";
     const params = [req.params.id];
     const params2 = [req.params.id2];
     
@@ -76,7 +75,8 @@ function myGetPerson(req, res) {
         //res.send(result.rows);
     });
     
-    res.send(result1 + result2);
+    res.send(result1);
+    res.send(result2);
 }
 
 function getChild(req, res) {

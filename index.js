@@ -80,6 +80,23 @@ function getChild(req, res) {
     });
 }
 
+function getParent(req, res) {
+    var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
+    var sql2 = "SELECT * FROM test_table_relations WHERE parent_id=" + req.params.id;
+    console.log("In the getParent function.");
+    
+    pool.query(sql, function(err, result) {
+        if (err)
+            console.error("Error in query: " + err);
+        
+        if (result.rows.length == 1) {
+            console.log("Found result: " + JSON.stringify(result.rows));
+            // result.rows is returned in JSON format
+            res.send(result.rows);
+        }
+    });
+}
+
 // This function handles requests to the /getPerson endpoint
 // it expects to have an id on the query string, such as: http://localhost:5000/getPerson?id=1
 function taGetPerson(req, res) {

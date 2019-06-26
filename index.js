@@ -46,7 +46,7 @@ app.get('/getParent/:id', getParent);
 // my function made for this assignment
 function myGetPerson(req, res) {
     var sql = "SELECT * FROM test_table WHERE id=" + req.params.id;
-    const sql_test = "SELECT * FROM test_table WHERE id = $1::int;" 
+    const sql_test = "SELECT * FROM test_table WHERE id = $1::int;";
     const sql_test2 = "SELECT * FROM test_table WHERE id = $1::int;";
     const params = [req.params.id];
     const params2 = [req.params.id2];
@@ -66,7 +66,7 @@ function myGetPerson(req, res) {
         //res.send(result1);
     });
     
-    pool.query(sql_test, params[1], function(err, result) {
+    pool.query(sql_test, params2, function(err, result) {
         if (err)
             console.error("Error in query: " + err);
         

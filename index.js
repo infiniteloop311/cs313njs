@@ -62,21 +62,18 @@ function myGetPerson(req, res) {
         console.log("Found result: " + JSON.stringify(result.rows));
         // result.rows is returned in JSON format
         result1 = result.rows;
-        //res.send(result1);
-    });
-    
-    pool.query(sql_test, params2, function(err, result) {
-        if (err)
-            console.error("Error in query: " + err);
+        res.send(result1);
         
-        console.log("Found result: " + JSON.stringify(result.rows));
-        // result.rows is returned in JSON format
-        result2 = result.rows;
-        //res.send(result.rows);
+        pool.query(sql_test, params2, function(err, result) {
+            if (err)
+                console.error("Error in query: " + err);
+        
+            console.log("Found result: " + JSON.stringify(result.rows));
+            // result.rows is returned in JSON format
+            result2 = result.rows;
+            res.send(result.rows);
+        });
     });
-    
-    res.send(result1);
-    res.send(result2);
 }
 
 function getChild(req, res) {

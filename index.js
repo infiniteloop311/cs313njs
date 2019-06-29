@@ -32,9 +32,9 @@ app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-app.get('/getData', getData);
+app.get('/getData', getData2);
 
-function getData(req, res) {
+function getData1(req, res) {
     const sql_test = "SELECT * FROM test_table WHERE id = $1::int;";
     console.log("In the getData function.");
     /*
@@ -64,7 +64,7 @@ function getData(req, res) {
 }
 
 // This function handles requests to the /getData endpoint
-function getPerson(req, res) {
+function getData2(req, res) {
 	// use a helper function to query the DB, and provide a callback for when it's done
 	getDataFromDb(res, function(error, result) {
 		// This is the callback function that will be called when the DB is done.

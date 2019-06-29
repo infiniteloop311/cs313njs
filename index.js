@@ -102,7 +102,7 @@ function getDataFromDb(res, callback) {
 
 		// Log this to the console for debugging purposes.
 		console.log("Found result: " + JSON.stringify(result.rows));
-        res.send(result.rows);
+        res.send(JSON.stringify(result.rows));
         
 		// When someone else called this function, they supplied the function
 		// they wanted called when we were all done. Call that function now

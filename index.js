@@ -59,7 +59,7 @@ function getData(req, res) {
             }
             console.log(result.rows);
             console.log("Found result: " + JSON.stringify(result.rows));
-            result.send(JSON.stringify(result.rows));
+            res.send(JSON.stringify(result.rows));
         });
     });
 }

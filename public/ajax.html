@@ -16,7 +16,7 @@
                     document.getElementById("demo3").innerHTML = JSON.stringify(dbObj[1]);
                 }
             };
-            xhttp.open("GET", "/getData/" + id, true);
+            xhttp.open("GET", "/getData", true);
             xhttp.send();
         }
     </script>
@@ -24,9 +24,7 @@
     
 <body >
     <h1>Get Data</h1>
-    <input id="db_id" type="text">
-    <br/>
-    <button type="submit" onclick="getData()">Get Details</button>
+    <button type="submit" onclick="getData()">Get All Rows</button>
     <br/>
     <div id="demo">
     </div>

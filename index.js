@@ -76,7 +76,7 @@ function getData2(req, res) {
 			res.status(500).json({success: false, data: error});
 		} else {
 			const person = result[0];
-			res.status(200).json(data);
+			res.status(200).json(result);
 		}
 	});
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8"> 
-    <title>Postal Form</title>
+    <title>Get Data AJAX</title>
     <script>
         function getData() {
             let id = document.getElementById("db_id").value;
@@ -12,6 +12,8 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var dbObj = JSON.parse(this.responseText);
                     document.getElementById("demo").innerHTML = this.responseText;
+                    document.getElementById("demo2").innerHTML = JSON.stringify(dbObj[0]);
+                    document.getElementById("demo3").innerHTML = JSON.stringify(dbObj[1]);
                 }
             };
             xhttp.open("GET", "/getData/" + id, true);
@@ -29,6 +31,8 @@
     <div id="demo">
     </div>
     <div id="demo2">
+    </div>
+    <div id="demo3">
     </div>
 </body>
 

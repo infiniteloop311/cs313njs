@@ -36,7 +36,7 @@ app.get('/getData/:id', getData);
 
 function getData(req, res) {
     const sql_test = "SELECT * FROM test_table WHERE id = $1::int;";
-    console.log("In the getPerson function.");
+    console.log("In the getData function.");
     /*
     pool.query(sql_test, params, function(err, result) {
         if (err)
@@ -47,7 +47,6 @@ function getData(req, res) {
         res.send(result.rows);
     });
     */
-    
     pool.connect((err, client, release) => {
         if (err)
             return console.error('Error acquiring client', err.stack)

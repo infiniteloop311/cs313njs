@@ -32,10 +32,9 @@ app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-app.get('/getData', getData1);
+app.get('/getData', getData2);
 
 function getData1(req, res) {
-    const sql_test = "SELECT * FROM test_table WHERE id = $1::int;";
     console.log("In the getData function.");
     /*
     pool.query(sql_test, params, function(err, result) {
@@ -56,7 +55,7 @@ function getData1(req, res) {
             if (err) {
                 return console.error('Error executing query', err.stack)
             }
-            console.log(result.rows);
+            //console.log(result.rows);
             console.log("Found result: " + JSON.stringify(result.rows));
             res.send(JSON.stringify(result.rows));
         });
@@ -65,6 +64,8 @@ function getData1(req, res) {
 
 // This function handles requests to the /getData endpoint
 function getData2(req, res) {
+    console.log("In the getData2 function.");
+    
 	// use a helper function to query the DB, and provide a callback for when it's done
 	getDataFromDb(res, function(error, result) {
 		// This is the callback function that will be called when the DB is done.

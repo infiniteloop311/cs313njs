@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-app.get('/getData', getData2);
+app.get('/getData', getData1);
 
 function getData1(req, res) {
     const sql_test = "SELECT * FROM test_table WHERE id = $1::int;";

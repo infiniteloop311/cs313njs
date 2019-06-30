@@ -2,16 +2,36 @@
 <html>
 <head>
     <% include ../partials/header.ejs %>
+    <script>
+        function getData() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var dbObj = JSON.parse(this.responseText);
+                    document.getElementById("demo").innerHTML = this.responseText;
+                    document.getElementById("demo2").innerHTML = JSON.stringify(dbObj[0]);
+                    document.getElementById("demo3").innerHTML = JSON.stringify(dbObj[1]);
+                }
+            };
+            xhttp.open("GET", "/getData", true);
+            xhttp.send();
+        }
+    </script>
 </head>
 <body>
     <% include ../partials/nav.ejs %>
     <div class="container">
-        <h2>Postal Rate</h2>
-        <p>
-            Mail of type "<%= category%>"<%if (zone != null) { %>being sent to zone <%= zone%><% } %>, 
-            weighing <%= weight%> oz., will cost you $<%= result%>.
-        </p>
-        <a href="/">Return To Form</a>
+        <h1>Get Data</h1>
+        <button type="submit" onclick="getData()">Get All Rows</button>
+        <br/>
+        <a href="/">Return To Index</a>
+    </div>
+    <br/>
+    <div id="demo">
+    </div>
+    <div id="demo2">
+    </div>
+    <div id="demo3">
     </div>
 </body>
 </html>

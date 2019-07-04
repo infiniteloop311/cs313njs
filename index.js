@@ -27,9 +27,13 @@ app.use(express.static(path.join(__dirname, '/public')));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-
+/*
 app.get('/', (req, res) => {
     res.render('pages/index');
+});
+*/
+app.get('/', (req, res) => {
+    res.render('pages/ajax_result');
 });
 
 app.get('/getData', getData2);

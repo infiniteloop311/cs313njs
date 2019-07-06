@@ -27,11 +27,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-/*
-app.get('/', (req, res) => {
-    res.render('pages/index');
-});
-*/
+
 app.get('/', (req, res) => {
     res.render('pages/ajax_result');
 });
@@ -58,7 +54,7 @@ function getData(req, res) {
 		} else {
 			const data = result[0];
             // This results in an error right now
-			//res.status(200).json(data);
+			res.status(200).json(data);
 		}
 	});
 }
@@ -85,7 +81,7 @@ function getDataFromDb(res, callback) {
 
 		// Log this to the console for debugging purposes.
 		console.log("Found result: " + JSON.stringify(result.rows));
-        res.send(JSON.stringify(result.rows));
+        //res.send(JSON.stringify(result.rows));
         
 		// When someone else called this function, they supplied the function
 		// they wanted called when we were all done. Call that function now

@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getData', getData);
+
 app.get('/getAFrame', function(req, res) {
     console.log("In the getAFrame function.");
     res.sendFile(__dirname + '/public/a-frame-test.html');

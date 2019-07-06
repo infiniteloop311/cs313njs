@@ -13,7 +13,7 @@
                     var dbObj = JSON.parse(this.responseText);
                     document.getElementById("demo").innerHTML = this.responseText;
                     document.getElementById("demo2").innerHTML = JSON.stringify(dbObj[0]);
-                    document.getElementById("demo3").innerHTML = JSON.stringify(dbObj[1]);
+                    document.getElementById("demo3").innerHTML = ("<strong>" + JSON.stringify(dbObj[1]) + "</strong>");
                 }
             };
             xhttp.open("GET", "/getData", true);

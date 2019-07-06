@@ -36,38 +36,10 @@ app.get('/', (req, res) => {
     res.render('pages/ajax_result');
 });
 
-app.get('/getData', getData2);
-
-function getData1(req, res) {
-    console.log("In the getData function.");
-    /*
-    pool.query(sql_test, params, function(err, result) {
-        if (err)
-            console.error("Error in query: " + err);
-        
-        console.log("Found result: " + JSON.stringify(result.rows));
-        // result.rows is returned in JSON format
-        res.send(result.rows);
-    });
-    */
-    pool.connect((err, client, release) => {
-        if (err)
-            return console.error('Error acquiring client', err.stack)
-        
-        client.query('SELECT * FROM test_table', (err, result) => {
-            release()
-            if (err) {
-                return console.error('Error executing query', err.stack)
-            }
-            //console.log(result.rows);
-            console.log("Found result: " + JSON.stringify(result.rows));
-            res.send(JSON.stringify(result.rows));
-        });
-    });
-}
+app.get('/getData', getData);
 
 // This function handles requests to the /getData endpoint
-function getData2(req, res) {
+function getData(req, res) {
     console.log("In the getData2 function.");
     
 	// use a helper function to query the DB, and provide a callback for when it's done

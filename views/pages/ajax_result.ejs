@@ -5,6 +5,7 @@
     <title>Get Data AJAX</title>
     <% include ../partials/header.ejs %>
     <script>
+        // This function will get 
         function getData() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -21,7 +22,6 @@
     </script>
 </head>
 <body>
-    <% include ../partials/nav.ejs %>
     <div class="container">
         <h1>Get Data</h1>
         <button type="submit" onclick="getData()">Get All Rows</button>

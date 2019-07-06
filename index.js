@@ -37,10 +37,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getData', getData);
+app.get('/getAFrame', function(req, res) {
+    console.log("In the getAFrame function.");
+    res.sendFile(__dirname + '/public/a-frame-test.html');
+});
 
 // This function handles requests to the /getData endpoint
 function getData(req, res) {
-    console.log("In the getData2 function.");
+    console.log("In the getData function.");
     
 	// use a helper function to query the DB, and provide a callback for when it's done
 	getDataFromDb(res, function(error, result) {

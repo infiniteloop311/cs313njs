@@ -54,7 +54,8 @@ function getData(req, res) {
 		} else {
 			const data = result[0];
             // This results in an error right now
-			res.status(200).json(data);
+			//res.status(200).json(data);
+            res.send(JSON.stringify(result));
 		}
 	});
 }

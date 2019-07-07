@@ -16,7 +16,9 @@
                         document.getElementById("demo2").appendChild(document.createTextNode(element.id));
                         document.getElementById("demo2").innerHTML += "<br/>";
                         document.getElementById("demo2").appendChild(document.createTextNode(element.name));
+                        document.getElementById("demo2").innerHTML += "<br/>";
                         document.getElementById("demo2").appendChild(document.createTextNode(element.link));
+                        document.getElementById("demo2").innerHTML += "<br/>";
                     });
                 }
             };
@@ -33,13 +35,9 @@
         <form action="/getAFrame" method="get">
             <button type="submit">A-Frame Test</button>
         </form>
-        <br/>
-        <br/>
         <div id="demo">
         </div>
         <div id="demo2">
-        </div>
-        <div id="demo3">
         </div>
         <br/>
         <form action="/postData" method="post">

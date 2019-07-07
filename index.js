@@ -23,6 +23,10 @@ const pool = new Pool({
 
 // tell it to use the public directory as one where static files live
 app.use(express.static(path.join(__dirname, '/public')));
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded({extended: true}));
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -95,6 +99,9 @@ function getDataFromDb(res, callback) {
 
 function postData(req, res) {
     console.log("In the postData function.");
+    let name = req.query.name;
+    let link = req.query.link;
+    console.log("Inserting data with name: " + name + " and link: " + link);
 }
 
 // start the server listening

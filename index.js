@@ -99,8 +99,8 @@ function getDataFromDb(res, callback) {
 
 function postData(req, res) {
     console.log("In the postData function.");
-    let name = req.query.name;
-    let link = req.query.link;
+    let name = req.body.name;
+    let link = req.body.link;
     console.log("Inserting data with name: " + name + " and link: " + link);
 }
 

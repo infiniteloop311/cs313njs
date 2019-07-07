@@ -13,8 +13,10 @@
                     var dbObj = JSON.parse(this.responseText);
                     document.getElementById("demo").innerHTML = this.responseText;
                     dbObj.forEach(function(element){
-                        document.getElementById("demo2").appendChild(document.createTextNode(element.id + "<br/>"));
-                        document.getElementById("demo2").appendChild(document.createTextNode(element.link + "<br/>"));
+                        document.getElementById("demo2").appendChild(document.createTextNode(element.id));
+                        document.getElementById("demo2").innerHTML += "<br/>";
+                        document.getElementById("demo2").appendChild(document.createTextNode(element.name));
+                        document.getElementById("demo2").appendChild(document.createTextNode(element.link));
                     });
                 }
             };

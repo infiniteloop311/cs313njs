@@ -15,8 +15,8 @@
                     //document.getElementById("demo2").innerHTML = JSON.stringify(dbObj[0]);
                     //document.getElementById("demo3").innerHTML = ("<strong>" + JSON.stringify(dbObj[1]) + "</strong>");
                     dbObj.forEach(function(element){
-                        document.getElementById("demo2").appendChild(element.id);
-                        document.getElementById("demo2").appendChild(element.link);
+                        document.getElementById("demo2").appendChild(document.createTextNode(element.id));
+                        document.getElementById("demo2").appendChild(document.createTextNode(element.link));
                     });
                 }
             };
@@ -42,8 +42,8 @@
         <div id="demo3">
         </div>
         <form action="/postData" method="post">
-            <input type="text" placeholder="Enter Name">
-            <textarea rows="10" cols="50" placeholder="Enter Link to GLTF File"></textarea>
+            <input type="text" placeholder="Enter Name"><br/>
+            <textarea rows="10" cols="50" placeholder="Enter Link to GLTF File"></textarea><br/>
             <button type="submit">Add Data</button>
         </form>
     </div>

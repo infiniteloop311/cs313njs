@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getData', getData);
-app.post('/postData', postData);
+app.post('/postData/:name/:link', postData);
 
 app.get('/getAFrame', function(req, res) {
     console.log("In the getAFrame function.");
@@ -99,8 +99,10 @@ function getDataFromDb(res, callback) {
 
 function postData(req, res) {
     console.log("In the postData function.");
-    let name = req.body.name;
-    let link = req.body.link;
+    //let name = req.body.name;
+    //let link = req.body.link;
+    let name = req.params.name;
+    let link = req.params.link;
     console.log("Inserting data with name: " + name + " and link: " + link);
 }
 

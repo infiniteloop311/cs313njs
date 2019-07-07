@@ -5,7 +5,7 @@
     <title>Get Data AJAX</title>
     <% include ../partials/header.ejs %>
     <script>
-        // This function will get 
+        // This function will get the data and display it to the screen
         function getData() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -13,16 +13,29 @@
                     var dbObj = JSON.parse(this.responseText);
                     //document.getElementById("demo").innerHTML = this.responseText;
                     dbObj.forEach(function(element){
-                        document.getElementById("demo2").appendChild(document.createTextNode(element.id));
-                        document.getElementById("demo2").innerHTML += "<br/>";
-                        document.getElementById("demo2").appendChild(document.createTextNode(element.name));
-                        document.getElementById("demo2").innerHTML += "<br/>";
-                        document.getElementById("demo2").appendChild(document.createTextNode(element.link));
-                        document.getElementById("demo2").innerHTML += "<br/>";
+                        document.getElementById("demo").appendChild(document.createTextNode(element.id));
+                        document.getElementById("demo").innerHTML += "<br/>";
+                        document.getElementById("demo").appendChild(document.createTextNode(element.name));
+                        document.getElementById("demo").innerHTML += "<br/>";
+                        document.getElementById("demo").appendChild(document.createTextNode(element.link));
+                        document.getElementById("demo").innerHTML += "<br/>";
                     });
                 }
             };
             xhttp.open("GET", "/getData", true);
+            xhttp.send();
+        }
+        // This function will post to insert data into the database
+        function getData() {
+            let name = document.getElementById("name").value;
+            let link = document.getElementById("link").value;
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo2").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "/postData/" + name + "/" + link, true);
             xhttp.send();
         }
     </script>
@@ -30,21 +43,24 @@
 <body>
     <div class="container">
         <h1>Get Data</h1>
-        <button type="submit" onclick="getData()">Get All Rows</button>
-        <br/>
         <form action="/getAFrame" method="get">
             <button type="submit">A-Frame Test</button>
         </form>
+        <br/>
+        <button type="submit" onclick="getData()">Get All Rows</button>
+        <br/>
         <div id="demo">
         </div>
-        <div id="demo2">
-        </div>
         <br/>
+        <button type="button" onclick="postData()">Add Data</button>
+        <!--Send data via a form or send it via AJAX and just get a confirmation that it worked-->
         <form action="/postData" method="post">
-            <input type="text" name="name" placeholder="Enter Name"><br/>
-            <textarea rows="10" cols="50" name="link" placeholder="Enter Link to GLTF File"></textarea><br/>
+            <input id="name" type="text" name="name" placeholder="Enter Name"><br/>
+            <textarea id="link" rows="10" cols="50" name="link" placeholder="Enter Link to GLTF File"></textarea><br/>
             <button type="submit">Add Data</button>
         </form>
+        <div id="demo2">
+        </div>
     </div>
 </body>
 </html>

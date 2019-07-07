@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getData', getData);
+app.post('/postData', postData);
 
 app.get('/getAFrame', function(req, res) {
     console.log("In the getAFrame function.");
@@ -91,6 +92,10 @@ function getDataFromDb(res, callback) {
 		callback(null, result.rows);
 	});
 } // end of getDataFromDb
+
+function postData(req, res) {
+    console.log("In the postData function.");
+}
 
 // start the server listening
 app.listen(PORT, function() { console.log('Node app is running on port', PORT); });

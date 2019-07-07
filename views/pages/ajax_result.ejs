@@ -12,8 +12,12 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var dbObj = JSON.parse(this.responseText);
                     document.getElementById("demo").innerHTML = this.responseText;
-                    document.getElementById("demo2").innerHTML = JSON.stringify(dbObj[0]);
-                    document.getElementById("demo3").innerHTML = ("<strong>" + JSON.stringify(dbObj[1]) + "</strong>");
+                    //document.getElementById("demo2").innerHTML = JSON.stringify(dbObj[0]);
+                    //document.getElementById("demo3").innerHTML = ("<strong>" + JSON.stringify(dbObj[1]) + "</strong>");
+                    dbObj.forEach(function(element){
+                        document.getElementById("demo2").appendChild(element.id);
+                        document.getElementById("demo2").appendChild(element.link);
+                    });
                 }
             };
             xhttp.open("GET", "/getData", true);
@@ -37,6 +41,11 @@
         </div>
         <div id="demo3">
         </div>
+        <form action="/postData" method="post">
+            <input type="text" placeholder="Enter Name">
+            <textarea rows="10" cols="50" placeholder="Enter Link to GLTF File"></textarea>
+            <button type="submit">Add Data</button>
+        </form>
     </div>
 </body>
 </html>

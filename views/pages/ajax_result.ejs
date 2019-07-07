@@ -12,11 +12,9 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var dbObj = JSON.parse(this.responseText);
                     document.getElementById("demo").innerHTML = this.responseText;
-                    //document.getElementById("demo2").innerHTML = JSON.stringify(dbObj[0]);
-                    //document.getElementById("demo3").innerHTML = ("<strong>" + JSON.stringify(dbObj[1]) + "</strong>");
                     dbObj.forEach(function(element){
-                        document.getElementById("demo2").appendChild(document.createTextNode(element.id));
-                        document.getElementById("demo2").appendChild(document.createTextNode(element.link));
+                        document.getElementById("demo2").appendChild(document.createTextNode(element.id + "<br/>"));
+                        document.getElementById("demo2").appendChild(document.createTextNode(element.link + "<br/>"));
                     });
                 }
             };
@@ -41,6 +39,7 @@
         </div>
         <div id="demo3">
         </div>
+        <br/>
         <form action="/postData" method="post">
             <input type="text" placeholder="Enter Name"><br/>
             <textarea rows="10" cols="50" placeholder="Enter Link to GLTF File"></textarea><br/>

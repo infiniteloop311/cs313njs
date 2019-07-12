@@ -11,15 +11,13 @@
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var dbObj = JSON.parse(this.responseText);
-                    //document.getElementById("demo").innerHTML = this.responseText;
                     dbObj.forEach(function(element){
                         //document.getElementById("demo").appendChild(document.createTextNode(element.id));
-                        document.getElementById("modelData").innerHTML += "<form action=\"/getAFrame\" method=\"get\">";
+                        document.getElementById("modelData").innerHTML += '<form action="/getAFrame" method="get">';
                         document.getElementById("modelData").innerHTML += String(element.name);
                         document.getElementById("modelData").innerHTML += ": ";
                         document.getElementById("modelData").innerHTML += '<input id="link" type="text" name="link" value="' + String(element.link) + '" readonly>';
-                        document.getElementById("modelData").innerHTML += "<br/>";
-                        document.getElementById("modelData").innerHTML += "<button type=\"submit\">Test</button>";
+                        document.getElementById("modelData").innerHTML += '<button type="submit">Test</button>';
                         document.getElementById("modelData").innerHTML += "</form>";
                     });
                 }

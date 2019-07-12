@@ -43,8 +43,12 @@
 <body>
     <div class="container">
         <h1>Get Data</h1>
-        <form action="/getAFrame" method="get">
+        <form action="/getAFrameTest" method="get">
             <button type="submit">A-Frame Test</button>
+        </form>
+        <form action="/getAFrame" method="get">
+            <input type="text" name="link" value="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AnimatedMorphSphere/glTF/AnimatedMorphSphere.gltf" readonly><br/>
+            <button type="submit">A-Frame Test 2</button>
         </form>
         <br/>
         <button type="submit" onclick="getData()">Get All Rows</button>

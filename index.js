@@ -41,6 +41,15 @@ app.post('/postData/:name/:link', postData);
 
 app.get('/getAFrame', function(req, res) {
     console.log("In the getAFrame function.");
+    
+    let link = req.query.link;
+    const params = {link: link};
+    
+    res.render('pages/a-frame_result', params);
+});
+
+app.get('/getAFrameTest', function(req, res) {
+    console.log("In the getAFrameTest function.");
     res.sendFile(__dirname + '/public/a-frame-test.html');
 });
 

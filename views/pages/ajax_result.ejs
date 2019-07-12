@@ -13,13 +13,14 @@
                     var dbObj = JSON.parse(this.responseText);
                     //document.getElementById("demo").innerHTML = this.responseText;
                     dbObj.forEach(function(element){
-                        document.getElementById("demo").appendChild(document.createTextNode(element.id));
-                        document.getElementById("demo").innerHTML += "<br/>";
-                        //document.getElementById("demo").appendChild(document.createTextNode(element.name));
+                        //document.getElementById("demo").appendChild(document.createTextNode(element.id));
+                        document.getElementById("demo").innerHTML += "<form>";
                         document.getElementById("demo").innerHTML += String(element.name);
+                        document.getElementById("demo").innerHTML += ": ";
+                        document.getElementById("demo").innerHTML += String(element.link);
                         document.getElementById("demo").innerHTML += "<br/>";
-                        document.getElementById("demo").appendChild(document.createTextNode(element.link));
-                        document.getElementById("demo").innerHTML += "<br/>";
+                        document.getElementById("demo").innerHTML += "<button type=\"submit\">Test</button>";
+                        document.getElementById("demo").innerHTML += "</form>";
                     });
                 }
             };

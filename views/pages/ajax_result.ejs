@@ -36,7 +36,7 @@
                     document.getElementById("postResponse").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("POST", "/postData/" + name + "/" + link, true);
+            xhttp.open("POST", "/postData?name=" + name + "&link=" + link, true);
             xhttp.send();
         }
     </script>
@@ -53,10 +53,11 @@
         </div>
         <br/>
         <!--Send data via a form or send it via AJAX and just get a confirmation that it worked-->
-        <!--<form action="/postData" method="post">-->
+        <form action="/postData" method="post">
             <input id="insert_name" type="text" name="insert_name" placeholder="Enter Name"><br/>
             <textarea id="insert_link" rows="10" cols="50" name="insert_link" placeholder="Enter Link to GLTF File"></textarea><br/>
             <button type="button" onclick="postData()">Add Data - AJAX</button>
+        </form>
         <div id="postResponse">
         </div>
     </div>

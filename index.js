@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getData', getData);
-app.post('/postData/:name/:link', postData);
+app.post('/postData/:name/', postData);
 
 app.get('/getAFrame', function(req, res) {
     console.log("In the getAFrame function.");

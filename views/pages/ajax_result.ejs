@@ -53,12 +53,10 @@
         </div>
         <br/>
         <!--Send data via a form or send it via AJAX and just get a confirmation that it worked-->
-        <form action="/postData" method="post">
+        <!--<form action="/postData" method="post">-->
             <input id="name" type="text" name="name" placeholder="Enter Name"><br/>
             <textarea id="link" rows="10" cols="50" name="link" placeholder="Enter Link to GLTF File"></textarea><br/>
             <button type="button" onclick="postData()">Add Data - AJAX</button>
-            <button type="submit">Add Data</button>
-        </form>
         <div id="postResponse">
         </div>
     </div>

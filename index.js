@@ -113,7 +113,7 @@ function postData(req, res) {
     let name = req.params.name;
     let link = req.params.link;
     console.log("Inserting data with name: " + name + " and link: " + link);
-    res.send("Success");
+    res.json("Success");
 }
 
 function insertDataIntoDB(res, callback) {

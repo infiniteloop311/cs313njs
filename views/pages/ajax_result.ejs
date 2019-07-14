@@ -4,6 +4,11 @@
     <meta charset="UTF-8"> 
     <title>Get Data AJAX</title>
     <% include ../partials/header.ejs %>
+    <style>
+        .sub_div {
+            width = 30%;
+        }
+    </style>
     <script>
         // This function will get the data and display it to the screen
         function getData() {
@@ -13,13 +18,13 @@
                     var dbObj = JSON.parse(this.responseText);
                     dbObj.forEach(function(element){
                         //document.getElementById("demo").appendChild(document.createTextNode(element.id));
-                        document.getElementById("modelData").innerHTML += '<form action="/getAFrame" method="get">' 
+                        document.getElementById("modelData").innerHTML += '<div class="sub_div"><form action="/getAFrame" method="get">' 
                             + String(element.name) 
                             + ': ' 
                             + '<input id="link" type="text" name="link" value="' 
                             + String(element.link) 
-                            + '" readonly>' + 
-                            '<button type="submit">Begin WebVR Experience</button></form>';
+                            + '" readonly><br/>' + 
+                            '<button type="submit">Begin WebVR Experience</button></form></div><br/>';
                     });
                 }
             };
@@ -49,6 +54,7 @@
     <div class="container">
         <h1>WebVR App Using A-Frame</h1>
         <a href="https://atteneder.github.io/glTFastWebDemo/#" target="_blank">Click to access free .gltf models hosted online to add to the list below.</a>
+        <br/>
         <br/>
         <!--This is the div that will contain the data retrieved from the database-->
         <div id="modelData">

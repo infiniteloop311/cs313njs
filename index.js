@@ -110,12 +110,23 @@ function postData(req, res) {
     console.log("In the postData function.");
     let name = req.query.name;
     let link = req.query.link;
-    console.log("Inserting data with name: " + name + " and link: " + link);
-    res.json("Success");
+    
+    console.log("Inserting data with name: " + name + " and link: " + link); 
+    const params = {name, link}; 
+    
+    insertDataIntoDB(res, params, function(error, result) {
+        if (error || result == null) {
+            res.json("Failed");
+        } else {
+            res.json("Success")
+        }
+    });
 }
 
-function insertDataIntoDB(res, callback) {
+function insertDataIntoDB(res, params, callback) {
+    console.log("Inserting data into DB");
     
+    const sql = "INSERT INTO links(name, link) VALUES($1::text, $2::text)";
 }
 
 // start the server listening

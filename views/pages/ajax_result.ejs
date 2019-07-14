@@ -19,7 +19,7 @@
                             + '<input id="link" type="text" name="link" value="' 
                             + String(element.link) 
                             + '" readonly>' + 
-                            '<button type="submit">Test</button></form>';
+                            '<button type="submit">Begin WebVR Experience</button></form>';
                     });
                 }
             };
@@ -34,6 +34,7 @@
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("postResponse").innerHTML = this.responseText;
+                    getData();
                 }
             };
             xhttp.open("POST", "/postData?name=" + name + "&link=" + link, true);
@@ -43,12 +44,11 @@
 </head>
 <body onload="getData()">
     <div class="container">
-        <h1>Get Data</h1>
+        <h1>WebVR App Using A-Frame</h1>
         <form action="/getAFrameTest" method="get">
             <button type="submit">A-Frame Test</button>
         </form>
         <br/>
-        
         <div id="modelData">
         </div>
         <br/>

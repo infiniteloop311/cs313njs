@@ -127,6 +127,8 @@ function insertDataIntoDB(res, params, callback) {
     console.log("Inserting data into DB");
     
     const sql = "INSERT INTO links(name, link) VALUES($1::text, $2::text)";
+    
+    callback(null, "Success");
 }
 
 // start the server listening

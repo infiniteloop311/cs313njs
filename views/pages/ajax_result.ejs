@@ -27,6 +27,8 @@
             xhttp.send();
         }
         // This function will post to insert data into the database
+        //  https://atteneder.github.io/glTFastWebDemo/# - this is the website where free .gltf models are hosted online. 
+        //  This makes it so that I don't have to worry about my app requiring any authentication from any third party apps. 
         function postData() {
             let name = document.getElementById("insert_name").value;
             let link = document.getElementById("insert_link").value;
@@ -34,6 +36,7 @@
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("postResponse").innerHTML = this.responseText;
+                    // the page will reload and confirm by showing what was inserted in the list above
                     location.reload();
                 }
             };
@@ -45,18 +48,18 @@
 <body onload="getData()">
     <div class="container">
         <h1>WebVR App Using A-Frame</h1>
-        <form action="/getAFrameTest" method="get">
-            <button type="submit">A-Frame Test</button>
-        </form>
+        <a href="https://atteneder.github.io/glTFastWebDemo/#" target="_blank">Click to access free .gltf models hosted online to add to the list below.</a>
         <br/>
+        <!--This is the div that will contain the data retrieved from the database-->
         <div id="modelData">
         </div>
         <br/>
         <!--Send data via a form or send it via AJAX and just get a confirmation that it worked-->
+        <h3>Add a model to the list above</h3>
         <form action="/postData" method="post">
             <input id="insert_name" type="text" name="insert_name" placeholder="Enter Name"><br/>
             <textarea id="insert_link" rows="5" cols="50" name="insert_link" placeholder="Enter Link to GLTF File"></textarea><br/>
-            <button type="button" onclick="postData()">Add Data - AJAX</button>
+            <button type="button" onclick="postData()">Add New Model</button>
         </form>
         <div id="postResponse">
         </div>

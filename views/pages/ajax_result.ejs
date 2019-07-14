@@ -34,7 +34,7 @@
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("postResponse").innerHTML = this.responseText;
-                    getData();
+                    location.reload();
                 }
             };
             xhttp.open("POST", "/postData?name=" + name + "&link=" + link, true);

@@ -112,7 +112,7 @@ function postData(req, res) {
     let link = req.query.link;
     
     console.log("Inserting data with name: " + name + " and link: " + link); 
-    const params = {name, link}; 
+    const params = [name, link]; 
     
     insertDataIntoDB(res, params, function(error, result) {
         if (error || result == null) {
@@ -125,10 +125,17 @@ function postData(req, res) {
 
 function insertDataIntoDB(res, params, callback) {
     console.log("Inserting data into DB");
-    
     const sql = "INSERT INTO links(name, link) VALUES($1::text, $2::text)";
     
-    callback(null, "Success");
+    pool.query(sql, params, function(err, result) {
+        if (err) {
+            console.log("Error in query: ")
+			console.log(err);
+			callback(err, null);
+        }
+        console.log("Inserted Successfully!");
+        callback(null, "Success");
+    });
 }
 
 // start the server listening

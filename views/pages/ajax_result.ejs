@@ -4,6 +4,11 @@
     <meta charset="UTF-8"> 
     <title>Get Data AJAX</title>
     <% include ../partials/header.ejs %>
+    <style>
+        body {
+            background: #DCDCDC;
+        }
+    </style>
     <script>
         // This function will get the data and display it to the screen
         function getData() {
@@ -49,19 +54,20 @@
     <div class="container">
         <h1>WebVR App Using A-Frame</h1>
         <a href="https://atteneder.github.io/glTFastWebDemo/#" target="_blank">Click to access free .gltf models hosted online to add to the list below.</a>
-        <br/>
-        <br/>
+        <br/><br/>
         <!--This is the div that will contain the data retrieved from the database-->
         <div id="modelData">
         </div>
         <br/><br/>
         <!--Send data via a form or send it via AJAX and just get a confirmation that it worked-->
-        <h3>Add a model to the list above</h3>
-        <form action="/postData" method="post">
-            <input id="insert_name" type="text" name="insert_name" placeholder="Enter Name"><br/>
-            <textarea id="insert_link" rows="5" cols="50" name="insert_link" placeholder="Enter Link to GLTF File"></textarea><br/>
-            <button type="button" onclick="postData()">Add New Model</button>
-        </form>
+        <div>
+            <h3>Add a model to the list above</h3>
+            <form action="/postData" method="post">
+                <input id="insert_name" type="text" name="insert_name" placeholder="Enter Name"><br/>
+                <textarea id="insert_link" rows="5" cols="50" name="insert_link" placeholder="Enter Link to GLTF File"></textarea><br/>
+                <button type="button" onclick="postData()">Add New Model</button>
+            </form>
+        </div>
         <div id="postResponse">
         </div>
     </div>

@@ -8,6 +8,10 @@
         body {
             background: #DCDCDC;
         }
+        .col-md-4 {
+            display: table-cell;
+            float: left;
+        }
     </style>
     <script>
         // This function will get the data and display it to the screen
@@ -18,7 +22,7 @@
                     var dbObj = JSON.parse(this.responseText);
                     dbObj.forEach(function(element){
                         //document.getElementById("demo").appendChild(document.createTextNode(element.id));
-                        document.getElementById("modelData").innerHTML += '<div class="col-md-4 text-center" style="display: table-cell"><form action="/getAFrame" method="get">' 
+                        document.getElementById("modelData").innerHTML += '<div class="col-md-4 text-center"><form action="/getAFrame" method="get">' 
                             + String(element.name) 
                             + ': <br/>' 
                             + '<input id="link" type="text" name="link" value="' 

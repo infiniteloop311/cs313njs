@@ -48,6 +48,7 @@
                     document.getElementById("postResponse").innerHTML = this.responseText;
                     // the page will reload and confirm by showing what was inserted in the list above
                     location.reload();
+                    document.getElementById("post_form").reset();
                 }
             };
             xhttp.open("POST", "/postData?name=" + name + "&link=" + link, true);
@@ -68,7 +69,7 @@
         <!--Send data via a form or send it via AJAX and just get a confirmation that it worked-->
         <div>
             <h3>Add a model to the list above</h3>
-            <form action="/postData" method="post">
+            <form id="post_form" action="/postData" method="post">
                 <input id="insert_name" type="text" name="insert_name" placeholder="Enter Name"><br/>
                 <textarea id="insert_link" rows="5" cols="50" name="insert_link" placeholder="Enter Link to GLTF File"></textarea><br/>
                 <button type="button" onclick="postData()">Add New Model</button>

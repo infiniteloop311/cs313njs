@@ -137,6 +137,5 @@ function insertDataIntoDB(res, params, callback) {
         callback(null, "Success");
     });
 }
-
 // start the server listening
 app.listen(PORT, function() { console.log('Node app is running on port', PORT); });
